@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>Kimji's Complete Glute & Posture Plan</title>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+            <title>Kimji's Complete Glute & Posture Plan</title>
+            <style>
+                /* ===== ESTILOS BASE ===== */
+                body {
+                    font-family: 'Avenir Next', sans-serif;
+                    line-height: 1.6;
+                    color: #333;
+                    max-width: 800px;
+                    margin: 0 auto;
+                    padding: 20px;
+                    background-color: #FFF9F5;
+                }
+            
+                h1, h2 {
+                    color: #FF9AA2;
+                    font-family: 'Quicksand', sans-serif;
+                }
+            
+                h3 {
+                    color: #A2E1DB;
+                    border-bottom: 1px solid #FFB7B2;
+                    padding-bottom: 5px;
+                }
+            
+                /* ===== COMPONENTES MEJORADOS ===== */
+                .day-button {
+                    background-color: #F0F0F0;
+                    font-size: 16px;
+                    color: black;
+                    border: 1px solid #ccc;
+                    padding: 12px 20px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    min-height: 44px;
+                    min-width: 80px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    margin: 0 5px 10px 5px;
+                }
+
+                /* ===== LISTA DE COPIAS ===== */
+                #savedCopiesContainer {
+                    background-color: #eecbd1 !important;
+                    padding: 15px;
+                    border-radius: 10px;
+                    transition: all 0.3s ease-in-out;
+                    max-height: 1000px; /* Altura máxima expandida */
+                    overflow: hidden;
+                    opacity: 1;
+                    margin: 25px 0;
+                }
+
+                #savedCopiesContainer.hidden {
+                    max-height: 0;
+                    padding: 0;
+                    margin: 0;
+                    opacity: 0;
+                }
+
+                #savedCopiesContainer ul {
+                    list-style-type: none;
+                    padding-left: 0;
+                    margin: 0;
+                    transition: inherit; /* Hereda la transición del contenedor */
+                }
+
+                #savedCopiesContainer li {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 12px;
+                    background-color: rgba(255, 255, 255, 0.9);
+                    border-radius: 8px;
+                    margin-bottom: 8px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+                }
+
+                #savedCopiesContainer li:last-child {
+                    margin-bottom: 0;
+                }
+
+                /* Contenedor padre - Añade esto si los botones están en un flex contenedor */
+                .button-group-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 8px; /* Espacio horizontal entre botones */
+                    row-gap: 12px; /* Espacio vertical entre filas */
+                }
+        
+                /* ===== SECCIÓN FECHA (estilo detallado) ===== */
+                .date-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 15px;
+                    margin: 20px 0;
+                    padding: 10px;
+                }
+        
+                input[type="date"] {
+                    font-size: 18px;
+                    padding: 12px 15px;
+                    border-radius: 8px;
+                    border: 2px solid #FFD700;
+                    width: 280px;
+                    text-align: center;
+                    transition: all 0.3s ease;
+                    -webkit-tap-highlight-color: transparent;
+                }
+        
+                #set-date-btn {
+                    background-color: #FFD700;
+                    color: #333;
+                    padding: 14px 25px;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    font-weight: 600;
+                    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    min-height: 44px;
+                    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+                    display: flex;
+                    align-items: center;
+                }
+        
+                /* ===== BOTONES PRINCIPALES (estilo detallado) ===== */
+                .button-container {
+                    display: flex;
+                    justify-content: center;
+                    gap: 15px;
+                    margin: 25px 0;
+                    flex-wrap: wrap;
+                }
+        
+                /* ===== BOTONES PRINCIPALES (estilo detallado) ===== */
+                .btn {
+                    padding: 14px 24px;
+                    border: none;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    font-weight: 600;
+                    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    min-height: 44px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 8px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+
+                /* ===== COLORES PASTEL CON CONTRASTE ===== */
+                .save-btn { 
+                    background-color: #A2E1DB;  /* Verde pastel */
+                    color: #1a535c;  /* Texto oscuro para contraste */
+                }
+                .view-btn { 
+                    background-color: #D4A5E1;  /* Violeta pastel */
+                    color: #4a306d;
+                }
+                .clear-btn { 
+                    background-color: #FFB6C1;  /* Rosado pastel */
+                    color: #8a1c3a;
+                }
+                .load-btn { 
+                    background-color: #A2D2FF;  /* Azul pastel */
+                    color: #1e3a5f;
+                }
+                .delete-btn { 
+                    background-color: #ff7f7f;  /* Rojo pastel mejorado */
+                    color: #8b0000;
+                }
+
+                /* Mantenemos el delete-btn original como respaldo */
+                .delete-btn.original { 
+                    background-color: #ef8091; 
+                    color: #8a1c3a;
+                }
+        
+                /* ===== INTERACTIVIDAD (priorizando efectos detallados) ===== */
+                .day-button:active,
+                #set-date-btn:active,
+                .btn:active {
+                    transform: scale(0.96);
+                    opacity: 0.9;
+                }
+        
+                input[type="date"]:focus {
+                    border-color: #A2E1DB;
+                    outline: none;
+                }
+
+                /* ===== BOTÓN OCULTAR LISTA ===== */
+                .hide-btn {
+                    margin-top: 20px;
+                    padding: 12px 24px;
+                    border: none;
+                    border-radius: 8px; /* Mismo radio que otros botones */
+                    cursor: pointer;
+                    background-color: #909090; /* Gris más contrastante */
+                    color: white; /* Texto blanco para mejor legibilidad */
+                    font-size: 15px;
+                    font-weight: 500; /* Peso medio para diferenciarlo */
+                    transition: all 0.2s ease;
+                    min-height: 44px; /* Tamaño táctil mínimo */
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra consistente */
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px; /* Espacio entre icono/texto */
+                }
+
+                /* Efectos interactivos */
+                .hide-btn:active {
+                    transform: scale(0.96);
+                    background-color: #787878;
+                }
+
+                @media (hover: hover) {
+                    .hide-btn:hover {
+                        background-color: #a0a0a0;
+                        transform: translateY(-1px);
+                    }
+                }
+
+                /* Versión móvil */
+                @media (max-width: 600px) {
+                    .hide-btn {
+                        width: 100%;
+                        max-width: 200px;
+                        margin: 15px auto; /* Centrado en móvil */
+                        font-size: 14px;
+                        padding: 12px 20px;
+                    }
+                }
+        
+                /* ===== MEDIA QUERIES (estructura detallada) ===== */
+                @media (max-width: 600px) {
+                    body {
+                        padding: 10px;
+                        font-size: 16px;
+                        max-width: 100%;
+                    }
+        
+                    .date-container {
+                        flex-direction: column;
+                        gap: 12px;
+                        margin: 15px 0;
+                    }
+        
+                    input[type="date"] {
+                        width: 100%;
+                        max-width: 300px;
+                        font-size: 16px;
+                        padding: 14px;
+                    }
+        
+                    #set-date-btn {
+                        width: 100%;
+                        max-width: 300px;
+                        font-size: 15px;
+                        padding: 12px 20px;
+                    }
+        
+                    .button-container {
+                        flex-direction: column;
+                        gap: 12px;
+                        margin: 20px 0;
+                    }
+        
+                    .btn {
+                        width: 100%;
+                        max-width: 300px;
+                        font-size: 15px;
+                        padding: 12px 20px;
+                    }
+                }
+        
+                @media (hover: hover) {
+                    .day-button:hover {
+                        background-color: #f0f0f072;
+                    }
+                    
+                    #set-date-btn:hover {
+                        background-color: #FFE44D;
+                        transform: translateY(-1px);
+                    }
+                    
+                    input[type="date"]:hover {
+                        border-color: #A2E1DB;
+                    }
+                }
+        
+                /* ===== ESTILOS RESTANTES (sin duplicar) ===== */
+                .header {
+                    text-align: center;
+                    margin-bottom: 30px;
+                    border-bottom: 2px dashed #FFB7B2;
+                    padding-bottom: 10px;
+                }
+        
+                .exercise {
+                    margin-bottom: 15px;
+                    padding-left: 10px;
+                    border-left: 3px solid #F5E1FD;
+                }
+        
+                .concern {
+                    background-color: #FFF0F5;
+                    padding: 10px;
+                    border-radius: 5px;
+                    margin: 10px 0;
+                    font-size: 0.9em;
+                }
+        
+                #savedCopiesContainer {
+                    text-align: center;
+                    margin: 25px 0;
+                    padding: 15px;
+                    background-color: rgba(255, 255, 255, 0.9);
+                    border-radius: 10px;
+                }
+            </style>
+        </head>
+
+<body>
+    <div class="header">
+        <h1>🍑 Kimji's Glute & Posture Plan</h1>
+        <p>12-Week Machine-Based Program | Start Date: <span id="start-date">___________</span></p>
+    
+        <div class="date-container">
+            <input type="date" id="date-picker">
+            <button id="set-date-btn" onclick="setStartDate()">Set Date</button>
+        </div>
+    </div>
+
+    <script>
+        function setStartDate() {
+            // Obtener el valor del input de fecha
+            let datePicker = document.getElementById("date-picker");
+            let selectedDate = datePicker.value;
+    
+            // Verificar si el usuario ha seleccionado una fecha
+            if (selectedDate) {
+                // Actualizar el contenido del span con la fecha seleccionada
+                document.getElementById("start-date").textContent = selectedDate;
+            } else {
+                alert("Please select a date before clicking 'Set Date'.");
+            }
+        }
+    </script>
+    
+    <!-- Monday -->
+    <div class="day">
+        <h2>Monday: Glute Power Day</h2>
+        
+        <div class="exercise">
+            <h3>1. Leg Press (Glute Emphasis)</h3>
+            <p><strong>Form:</strong> Feet high on platform (top 1/3), heels pressing. Lower until knees form 90°.</p>
+            <p><strong>Sets:</strong> 3x12 | <strong>Start Weight:</strong> 50kg</p>
+            <div class="concern">
+                <strong>⚠️ Watch For:</strong> Knee caving inward → Push knees outward during press.
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>2. Hip Adductor</h3>
+            <p><strong>Form:</strong> Lean torso 15° forward, squeeze inward for 2 seconds.</p>
+            <p><strong>Sets:</strong> 3x15 | <strong>Start Weight:</strong> 40kg</p>
+        </div>
+        
+        <div class="exercise">
+            <h3>3. Seated Leg Curl</h3>
+            <p><strong>Form:</strong> Slow eccentric (3 sec down), squeeze hamstrings at top.</p>
+            <p><strong>Sets:</strong> 3x12 | <strong>Start Weight:</strong> 30kg</p>
+        </div>
+        
+        <p><strong>Cardio:</strong> 15 min incline walk (10% incline, 3.0 mph)</p>
+        <p><strong>Optional Recovery:</strong> Reformer Pilates (glute/hamstring stretches)</p>
+    </div>
+
+    <!-- Tuesday -->
+    <div class="day">
+        <h2>Tuesday: Cardio + Core</h2>
+        <p><strong>Class:</strong> 45 min Zumba/BodyJam</p>
+        <div class="exercise">
+            <h3>Core Finisher</h3>
+            <p>• Plank 3x30 sec<br>• Dead Bug 2x10/side</p>
+        </div>
+        <div class="concern">
+            <strong>⚠️ Note:</strong> If joints hurt during Zumba, modify high-impact moves (march in place).
+        </div>
+    </div>
+
+    <!-- Wednesday -->
+    <div class="day">
+        <h2>Wednesday: Rest Day</h2>
+        <p><strong>Optional:</strong> 20 min leisure walk + light stretching</p>
+    </div>
+
+    <!-- Thursday -->
+    <div class="day">
+        <h2>Thursday: Upper Body + Posture</h2>
+        <div class="exercise">
+            <h3>1. Lat Pulldown (Wide Grip)</h3>
+            <p><strong>Form:</strong> Pull to collarbone, squeeze shoulder blades.</p>
+            <p><strong>Sets:</strong> 3x12 | <strong>Start Weight:</strong> 25kg</p>
+        </div>
+        <div class="exercise">
+            <h3>2. Seated Row (Neutral Grip)</h3>
+            <p><strong>Form:</strong> Chest against pad, row to belly button.</p>
+            <p><strong>Sets:</strong> 3x12 | <strong>Start Weight:</strong> 20kg</p>
+        </div>
+        <div class="exercise">
+            <h3>3. Seated Knee Raise</h3>
+            <p><strong>Form:</strong> Slow controlled lifts, exhale on contraction.</p>
+            <p><strong>Sets:</strong> 2x10</p>
+        </div>
+        <p><strong>Cardio:</strong> 15 min stairmaster (interval mode)</p>
+        <div class="concern">
+            <strong>⚠️ Posture Tip:</strong> Do 5 chin tucks post-workout to reinforce alignment.
+        </div>
+    </div>
+
+    <!-- Friday -->
+    <div class="day">
+        <h2>Friday: Glute Strength</h2>
+        <div class="exercise">
+            <h3>1. Hip Adductor</h3>
+            <p><strong>Variation:</strong> Increase weight by 5kg from Monday.</p>
+            <p><strong>Sets:</strong> 3x15</p>
+        </div>
+        <div class="exercise">
+            <h3>2. Leg Press (Narrow Stance)</h3>
+            <p><strong>Form:</strong> Feet shoulder-width, drive through heels.</p>
+            <p><strong>Sets:</strong> 3x12 | <strong>Weight:</strong> Same as Monday</p>
+        </div>
+        <div class="exercise">
+            <h3>3. Back Extension (Glute Focus)</h3>
+            <p><strong>Form:</strong> Adjust pad to hip crease, squeeze glutes at top.</p>
+            <p><strong>Sets:</strong> 3x12 | <strong>Add Weight:</strong> 5kg plate when ready</p>
+        </div>
+        <p><strong>Cardio:</strong> 15 min cycling (resistance 5-7)</p>
+    </div>
+
+    <!-- Saturday -->
+    <div class="day">
+        <h2>Saturday: Cardio + Mobility</h2>
+        <p><strong>Class:</strong> 45 min Spin</p>
+        <div class="exercise">
+            <h3>Post-Class Mobility</h3>
+            <p>• Hip Circles 2x10/side<br>• Cat-Cow Stretch 1 min</p>
+        </div>
+        <div class="concern">
+            <strong>⚠️ Form Tip:</strong> Keep shoulders relaxed during spin class to avoid neck tension.
+        </div>
+    </div>
+
+    <!-- Sunday -->
+    <div class="day">
+        <h2>Sunday: Active Recovery</h2>
+        <div class="exercise">
+            <h3>1. Leisure Walk</h3>
+            <p><strong>Duration:</strong> 30 min | <strong>Pace:</strong> Conversational</p>
+        </div>
+        <div class="exercise">
+            <h3>2. Yoga/Stretching</h3>
+            <p><strong>Focus:</strong> Hips/Glutes<br>• Pigeon Pose 1 min/side<br>• Supine Hamstring Stretch</p>
+        </div>
+        <div class="concern">
+            <strong>⚠️ Recovery Tip:</strong> Use a foam roller on glutes if sore from Friday's workout.
+        </div>
+    </div>
+
+    <!-- Progress Trackers -->
+    <div class="day">
+        <h2>📊 Progress Trackers</h2>
+
+        <h3>Weekly Checkpoints</h3>
+
+        <p><strong>Measurements (cm):</strong> 
+            Hips <input type="number" id="hips" placeholder="" step="0.01"> | 
+            Waist <input type="number" id="waist" placeholder="" step="0.01"> | 
+            Glutes <input type="number" id="glutes" placeholder="" step="0.01">
+        </p>
+
+        <p>
+            Week 1:  
+            <button class="day-button" data-day="Monday_W1" onclick="toggleAttendance(this)">Monday</button>
+            <button class="day-button" data-day="Tuesday_W1" onclick="toggleAttendance(this)">Tuesday</button>
+            <button class="day-button" data-day="Wednesday_W1" onclick="toggleAttendance(this)">Wednesday</button>
+            <button class="day-button" data-day="Thursday_W1" onclick="toggleAttendance(this)">Thursday</button>
+            <button class="day-button" data-day="Friday_W1" onclick="toggleAttendance(this)">Friday</button>
+            <button class="day-button" data-day="Saturday_W1" onclick="toggleAttendance(this)">Saturday</button>
+            <button class="day-button" data-day="Sunday_W1" onclick="toggleAttendance(this)">Sunday</button>
+        </p>
+                
+        <div class="exercise">
+            <h3>Monday:</h3>
+            <p>Leg Press <input type="number" id="Leg press_W1" placeholder="" step="0.5"> kg</p>
+            <p>Hip Adductor <input type="number" id="Hip adductor_W1" placeholder="" step="0.5"> kg</p>
+            <p>Seated Leg Curl <input type="number" id="Leg curl_W1" placeholder="" step="0.5"> kg</p>
+        </div>
+
+        <div class="exercise">
+            <h3>Thursday:</h3>
+            <p>Lat Pulldown <input type="number" id="Lat Pulldown_W1" placeholder="" step="0.5"> kg</p>
+            <p>Seated Row <input type="number" id="Seated Row_W1" placeholder="" step="0.5"> kg</p>
+        </div>
+
+        <div class="exercise">
+            <h3>Friday:</h3>
+            <p>Hip Adductor <input type="number" id="Hip Adductor 2_W1" placeholder="" step="0.5"> kg</p>
+            <p>Leg Press <input type="number" id="Leg Press 2_W1" placeholder="" step="0.5"> kg</p>
+            <p>Back Extension <input type="number" id="Back Extension_W1" placeholder="" step="0.5"> kg</p>
+        </div>
+
+        <p><strong>Progress notes Week 1:</strong></p>
+        <textarea id="progress-notes_W1" placeholder="Write here your notes..."></textarea>
+
+        <p>
+            Week 2:  
+            <button class="day-button" data-day="Monday_W2" onclick="toggleAttendance(this)">Monday</button>
+            <button class="day-button" data-day="Tuesday_W2" onclick="toggleAttendance(this)">Tuesday</button>
+            <button class="day-button" data-day="Wednesday_W2" onclick="toggleAttendance(this)">Wednesday</button>
+            <button class="day-button" data-day="Thursday_W2" onclick="toggleAttendance(this)">Thursday</button>
+            <button class="day-button" data-day="Friday_W2" onclick="toggleAttendance(this)">Friday</button>
+            <button class="day-button" data-day="Saturday_W2" onclick="toggleAttendance(this)">Saturday</button>
+            <button class="day-button" data-day="Sunday_W2" onclick="toggleAttendance(this)">Sunday</button>
+        </p>
+                
+        <div class="exercise">
+            <h3>Monday:</h3>
+            <p>Leg Press <input type="number" id="Leg press_W2" placeholder="" step="0.5"> kg</p>
+            <p>Hip Adductor <input type="number" id="Hip adductor_W2" placeholder="" step="0.5"> kg</p>
+            <p>Seated Leg Curl <input type="number" id="Leg curl_W2" placeholder="" step="0.5"> kg</p>
+        </div>
+
+        <div class="exercise">
+            <h3>Thursday:</h3>
+            <p>Lat Pulldown <input type="number" id="Lat Pulldown_W2" placeholder="" step="0.5"> kg</p>
+            <p>Seated Row <input type="number" id="Seated Row_W2" placeholder="" step="0.5"> kg</p>
+        </div>
+
+        <div class="exercise">
+            <h3>Friday:</h3>
+            <p>Hip Adductor <input type="number" id="Hip Adductor 2_W2" placeholder="" step="0.5"> kg</p>
+            <p>Leg Press <input type="number" id="Leg Press 2_W2" placeholder="" step="0.5"> kg</p>
+            <p>Back Extension <input type="number" id="Back Extension_W2" placeholder="" step="0.5"> kg</p>
+        </div>
+
+        <p><strong>Progress notes Week 2:</strong></p>
+        <textarea id="progress-notes_W2" placeholder="Write here your notes..."></textarea>
+
+        <p>
+            Week 3:  
+            <button class="day-button" data-day="Monday_W3" onclick="toggleAttendance(this)">Monday</button>
+            <button class="day-button" data-day="Tuesday_W3" onclick="toggleAttendance(this)">Tuesday</button>
+            <button class="day-button" data-day="Wednesday_W3" onclick="toggleAttendance(this)">Wednesday</button>
+            <button class="day-button" data-day="Thursday_W3" onclick="toggleAttendance(this)">Thursday</button>
+            <button class="day-button" data-day="Friday_W3" onclick="toggleAttendance(this)">Friday</button>
+            <button class="day-button" data-day="Saturday_W3" onclick="toggleAttendance(this)">Saturday</button>
+            <button class="day-button" data-day="Sunday_W3" onclick="toggleAttendance(this)">Sunday</button>
+        </p>
+                
+        <div class="exercise">
+            <h3>Monday:</h3>
+            <p>Leg Press <input type="number" id="Leg press_W3" placeholder="" step="0.5"> kg</p>
+            <p>Hip Adductor <input type="number" id="Hip adductor_W3" placeholder="" step="0.5"> kg</p>
+            <p>Seated Leg Curl <input type="number" id="Leg curl_W3" placeholder="" step="0.5"> kg</p>
+        </div>
+
+        <div class="exercise">
+            <h3>Thursday:</h3>
+            <p>Lat Pulldown <input type="number" id="Lat Pulldown_W3" placeholder="" step="0.5"> kg</p>
+            <p>Seated Row <input type="number" id="Seated Row_W3" placeholder="" step="0.5"> kg</p>
+        </div>
+
+        <div class="exercise">
+            <h3>Friday:</h3>
+            <p>Hip Adductor <input type="number" id="Hip Adductor 2_W3" placeholder="" step="0.5"> kg</p>
+            <p>Leg Press <input type="number" id="Leg Press 2_W3" placeholder="" step="0.5"> kg</p>
+            <p>Back Extension <input type="number" id="Back Extension_W3" placeholder="" step="0.5"> kg</p>
+        </div>
+
+        <p><strong>Progress notes Week 3:</strong></p>
+        <textarea id="progress-notes_W3" placeholder="Write here your notes..."></textarea>
+
+        <p>
+            Week 4:  
+            <button class="day-button" data-day="Monday_W4" onclick="toggleAttendance(this)">Monday</button>
+            <button class="day-button" data-day="Tuesday_W4" onclick="toggleAttendance(this)">Tuesday</button>
+            <button class="day-button" data-day="Wednesday_W4" onclick="toggleAttendance(this)">Wednesday</button>
+            <button class="day-button" data-day="Thursday_W4" onclick="toggleAttendance(this)">Thursday</button>
+            <button class="day-button" data-day="Friday_W4" onclick="toggleAttendance(this)">Friday</button>
+            <button class="day-button" data-day="Saturday_W4" onclick="toggleAttendance(this)">Saturday</button>
+            <button class="day-button" data-day="Sunday_W4" onclick="toggleAttendance(this)">Sunday</button>
+        </p>
+                
+        <div class="exercise">
+            <h3>Monday:</h3>
+            <p>Leg Press <input type="number" id="Leg press_W4" placeholder="" step="0.5"> kg</p>
+            <p>Hip Adductor <input type="number" id="Hip adductor_W4" placeholder="" step="0.5"> kg</p>
+            <p>Seated Leg Curl <input type="number" id="Leg curl_W4" placeholder="" step="0.5"> kg</p>
+        </div>
+
+        <div class="exercise">
+            <h3>Thursday:</h3>
+            <p>Lat Pulldown <input type="number" id="Lat Pulldown_W4" placeholder="" step="0.5"> kg</p>
+            <p>Seated Row <input type="number" id="Seated Row_W4" placeholder="" step="0.5"> kg</p>
+        </div>
+
+        <div class="exercise">
+            <h3>Friday:</h3>
+            <p>Hip Adductor <input type="number" id="Hip Adductor 2_W4" placeholder="" step="0.5"> kg</p>
+            <p>Leg Press <input type="number" id="Leg Press 2_W4" placeholder="" step="0.5"> kg</p>
+            <p>Back Extension <input type="number" id="Back Extension_W4" placeholder="" step="0.5"> kg</p>
+        </div>
+
+        <p><strong>Progress notes Week 4:</strong></p>
+        <textarea id="progress-notes_W4" placeholder="Write here your notes..."></textarea>
+
+        <h3>Monthly Goals</h3>
+        <p>• Add 5kg to leg press<br>• Hold plank for 45 sec<br>• 10% incline walk at 3.2 mph</p>
+    </div>
+
+    <div class="footer">
+        <p>Made for Kimji | Listen to your body and adjust as needed! 💕</p>
+    </div>
+
+    <script>
+        // Guardar y cargar la fecha de inicio
+        function setStartDate() {
+            let selectedDate = document.getElementById("date-picker").value;
+            if (selectedDate) {
+                document.getElementById("start-date").textContent = selectedDate;
+                localStorage.setItem("startDate", selectedDate);
+            } else {
+                alert("Please select a date before clicking 'Set Date'.");
+            }
+        }
+
+        function autoSaveData() {
+            // Guardar inputs y textareas sin sobreescribir backups
+            document.querySelectorAll("input, textarea").forEach(input => {
+                if (input.id && !input.id.startsWith("backup_")) {
+                    localStorage.setItem(input.id, input.value);
+                }
+            });
+        
+            // Guardar estado de los botones de asistencia sin afectar backups
+            document.querySelectorAll(".day-button").forEach(button => {
+                let day = button.dataset.day;
+                if (!day.startsWith("backup_")) {
+                    let attended = button.classList.contains("attended");
+                    localStorage.setItem(day, attended ? "true" : "false");
+                }
+            });
+        
+            console.log("Datos y asistencia guardados automáticamente (sin afectar backups)");
+        }
+
+        // Ejecutar cada 5 segundos
+        setInterval(autoSaveData, 5000);
+
+        function loadStoredData() {
+            let savedDate = localStorage.getItem("startDate");
+            if (savedDate) {
+                document.getElementById("start-date").textContent = savedDate;
+            }
+        
+            // Cargar mediciones
+            ["hips", "waist", "glutes"].forEach(id => {
+                let input = document.getElementById(id);
+                if (input) {
+                    let value = localStorage.getItem(id);
+                    if (value) input.value = value;
+                }
+            });
+        
+            // Cargar pesos de ejercicios de todas las semanas
+            for (let week = 1; week <= 4; week++) {
+                ["Leg press", "Hip adductor", "Leg curl", "Lat Pulldown", "Seated Row", "Hip Adductor 2", "Leg Press 2", "Back Extension"].forEach(exercise => {
+                    let id = exercise + "_W" + week;
+                    let value = localStorage.getItem(id);
+                    if (value) {
+                        let input = document.getElementById(id);
+                        if (input) input.value = value;
+                    }
+                });
+            
+                // Cargar notas de progreso por semana
+                let notesId = "progress-notes_W" + week;
+                let notes = localStorage.getItem(notesId);
+                if (notes) {
+                    let textarea = document.getElementById(notesId);
+                    if (textarea) textarea.value = notes;
+                }
+            }
+        
+            // Cargar asistencia SOLO para Week 1 - Week 4
+            document.querySelectorAll(".day-button").forEach(button => {
+                let day = button.dataset.day;
+                if (/W[1-4]$/.test(day)) {  // Verifica si pertenece a Week 1-4
+                    let attended = localStorage.getItem(day);
+                    if (attended === "true") {
+                        button.classList.add("attended");
+                        button.textContent = day.replace(/_W\d/, "") + " 😊";
+                    }
+                }
+            });
+        }
+    
+        // Función modificada para ocultar la lista
+        function hideSavedCopies() {
+            const container = document.getElementById("savedCopiesContainer");
+            container.classList.add("hidden");
+        }
+    
+        // Nueva función para alternar visibilidad
+        function toggleVisibility() {
+            const container = document.getElementById("savedCopiesContainer");
+            container.classList.toggle("hidden");
+            
+            // Si está visible, cargar datos
+            if (!container.classList.contains("hidden")) {
+                showSavedCopies();
+            }
+        }
+        
+        // Función para guardar una copia del plan con el mes seleccionado
+        function saveCopy() {
+            let month = prompt("Which month's copy do you want to save?").trim();
+            if (!month) {
+                alert("Please enter a valid month.");
+                return;
+            }
+        
+            let data = {
+                startDate: localStorage.getItem("startDate"),
+                measurements: {
+                    hips: localStorage.getItem("hips"),
+                    waist: localStorage.getItem("waist"),
+                    glutes: localStorage.getItem("glutes")
+                },
+                exercises: {},
+                progressNotes: {}
+            };
+        
+            for (let week = 1; week <= 4; week++) {
+                ["Leg press", "Hip adductor", "Leg curl", "Lat Pulldown", "Seated Row", "Hip Adductor 2", "Leg Press 2", "Back Extension"].forEach(exercise => {
+                    let id = `${exercise}_W${week}`;
+                    data.exercises[id] = localStorage.getItem(id);
+                });
+            
+                let notesId = `progress-notes_W${week}`;
+                data.progressNotes[notesId] = localStorage.getItem(notesId);
+            }
+        
+            localStorage.setItem(`backup_${month}`, JSON.stringify(data));
+            alert(`Backup for ${month} saved successfully!`);
+        }
+         // Función para cargar una copia del plan con el mes seleccionado
+        function loadCopy(month) {
+            let savedData = localStorage.getItem(`backup_${month}`);
+            if (savedData) {
+                let data = JSON.parse(savedData);
+                document.getElementById("start-date").textContent = data.startDate || "___________"; 
+            
+                ["hips", "waist", "glutes"].forEach(id => {
+                    if (id in data.measurements) {  
+                        document.getElementById(id).value = data.measurements[id] !== null ? data.measurements[id] : "";
+                    }
+                });
+            
+                for (let week = 1; week <= 4; week++) {
+                    ["Leg press", "Hip adductor", "Leg curl", "Lat Pulldown", "Seated Row", "Hip Adductor 2", "Leg Press 2", "Back Extension"].forEach(exercise => {
+                        let id = `${exercise}_W${week}`;
+                        if (id in data.exercises) {  
+                            document.getElementById(id).value = data.exercises[id] !== null ? data.exercises[id] : "";
+                        }
+                    });
+                
+                    let notesId = `progress-notes_W${week}`;
+                    if (notesId in data.progressNotes) {  
+                        document.getElementById(notesId).value = data.progressNotes[notesId] !== null ? data.progressNotes[notesId] : "";
+                    }
+                }
+            
+                alert(`Backup for ${month} loaded successfully!`);
+            } else {
+                alert(`No backup found for ${month}`);
+            }
+        }
+
+        function deleteCopy(month = null) {
+            if (!month) {
+                month = prompt("Which month's copy do you want to delete?").trim();
+            }
+        
+            if (!month || !localStorage.getItem(`backup_${month}`)) {
+                alert("Backup not found.");
+                return;
+            }
+        
+            if (confirm(`Are you sure you want to delete the backup for ${month}?`)) {
+                localStorage.removeItem(`backup_${month}`);
+                alert(`Backup for ${month} deleted successfully!`);
+                if (typeof showSavedCopies === "function") {
+                    showSavedCopies(); // Actualiza la lista después de borrar
+                }
+            }
+        }
+
+        function showSavedCopies() {
+            let copiesContainer = document.getElementById("savedCopiesContainer");
+            copiesContainer.classList.remove("hidden"); // Asegurar visibilidad
+            copiesContainer.innerHTML = "";
+            let copies = Object.keys(localStorage).filter(key => key.startsWith("backup_"));
+
+            if (copies.length === 0) {
+                copiesContainer.innerHTML = "<p>No saved copies found.</p>";
+                return;
+            }
+        
+            let list = document.createElement("ul");
+            copies.forEach(copyKey => {
+                let month = copyKey.replace("backup_", "");
+                let listItem = document.createElement("li");
+
+                listItem.innerHTML = `
+                    <span style="font-weight: bold;">${month}</span> 
+                    <button class="btn load-btn" onclick="loadCopy('${month}')">Load</button>
+                    <button class="btn delete-btn" onclick="deleteCopy('${month}')">Delete</button>
+                `;
+
+                list.appendChild(listItem);
+            });
+        
+            copiesContainer.appendChild(list);
+            let hideButton = document.createElement("button");
+            hideButton.textContent = "Hide Saved Copies 👀";
+            hideButton.className = "hide-btn";
+            hideButton.onclick = hideSavedCopies;
+            copiesContainer.appendChild(hideButton);
+        }
+
+        function hideSavedCopies() {
+            document.getElementById("savedCopiesContainer").innerHTML = "";
+        }
+
+        function clearCurrentData() {
+            if (confirm("Are you sure you want to clear the current data? This won't delete saved copies.")) {
+                // 🔴 Limpiar la fecha de inicio en la UI (pero NO eliminarla de localStorage)
+                document.getElementById("start-date").textContent = "___________";
+                document.getElementById("date-picker").value = ""; 
+            
+                // 🔴 Limpiar los inputs de medidas corporales (sin eliminar del localStorage)
+                ["hips", "waist", "glutes"].forEach(id => {
+                    let input = document.getElementById(id);
+                    if (input) input.value = "";
+                });
+            
+                // 🔴 Limpiar los inputs de ejercicios y notas de progreso (sin eliminar del localStorage)
+                for (let week = 1; week <= 4; week++) {
+                    ["Leg press", "Hip adductor", "Leg curl", "Lat Pulldown", "Seated Row", "Hip Adductor 2", "Leg Press 2", "Back Extension"].forEach(exercise => {
+                        let id = `${exercise}_W${week}`;
+                        let input = document.getElementById(id);
+                        if (input) input.value = "";
+                    });
+                
+                    let notesId = `progress-notes_W${week}`;
+                    let notesInput = document.getElementById(notesId);
+                    if (notesInput) notesInput.value = "";
+                }
+            
+                // 🔴 Reiniciar los botones de asistencia (sin borrar el localStorage)
+                document.querySelectorAll(".day-button").forEach(button => {
+                    let day = button.dataset.day;
+                    if (/W[1-4]$/.test(day)) {
+                        button.classList.remove("attended"); // Quita el estilo de "asistido"
+                        button.textContent = day.replace(/_W\d/, ""); // Restaura el texto original
+                    }
+                });
+            
+                alert("Current data cleared (without deleting saved inputs).");
+            }
+        }
+        
+        document.querySelectorAll(".btn").forEach(button => {
+            button.addEventListener("touchstart", function () {
+                this.style.transform = "scale(0.95)";  // Efecto de presionar
+            });
+        
+            button.addEventListener("touchend", function () {
+                this.style.transform = "scale(1)";  // Vuelve a la normalidad
+            });
+        
+            // Agrega click para compatibilidad con iOS
+            button.addEventListener("click", function () {
+                this.style.transform = "scale(0.95)";
+                setTimeout(() => {
+                    this.style.transform = "scale(1)";
+                }, 150);  // Pequeño delay para simular el efecto de presión
+            });
+        });
+        
+        // Guardar cambios en inputs y notas de progreso en tiempo real
+        document.addEventListener("input", (event) => {
+            let input = event.target;
+            if (input.id) {
+                localStorage.setItem(input.id, input.value);
+            }
+        });
+    
+        // Función para alternar asistencia y guardarla en localStorage
+        function toggleAttendance(button) {
+            let day = button.dataset.day;
+        
+            if (button.classList.contains("attended")) {
+                button.classList.remove("attended");
+                button.textContent = day.replace(/_W\d/, "");
+                localStorage.setItem(day, "false");
+            } else {
+                button.classList.add("attended");
+                button.textContent = day.replace(/_W\d/, "") + " 😊";
+                localStorage.setItem(day, "true");
+            }
+        }
+
+</script>
+
+    <!-- Contenedor de botones -->
+    <div class="button-container">
+        <button onclick="saveCopy()" class="btn save-btn">Save Copy 📂</button>
+        <button onclick="showSavedCopies()" class="btn view-btn">View Saved Copies 📂</button>
+        <button onclick="clearCurrentData()" class="btn clear-btn">Clear Current Data 🗑️</button>
+    </div>
+
+    <!-- Contenedor donde aparecerá la lista de copias guardadas -->
+    <div id="savedCopiesContainer"></div>
+
+</body>
+</html>
