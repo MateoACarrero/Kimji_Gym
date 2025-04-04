@@ -670,7 +670,13 @@
                     localStorage.setItem(input.id, input.value);
                 }
             });
-        
+            
+            // Guardar el contenido del span con la fecha de inicio
+            const startDateSpan = document.getElementById("start-date");
+            if (startDateSpan) {
+                localStorage.setItem("startDate", startDateSpan.textContent);
+            }
+
             // Guardar estado de los botones de asistencia sin afectar backups
             document.querySelectorAll(".day-button").forEach(button => {
                 let day = button.dataset.day;
@@ -765,9 +771,11 @@
                     glutes: localStorage.getItem("glutes")
                 },
                 exercises: {},
-                progressNotes: {}
+                progressNotes: {},
+                attendance: {}
             };
         
+            // Guardar ejercicios y notas por semana (1 a 4)
             for (let week = 1; week <= 4; week++) {
                 ["Leg press", "Hip adductor", "Leg curl", "Lat Pulldown", "Seated Row", "Hip Adductor 2", "Leg Press 2", "Back Extension"].forEach(exercise => {
                     let id = `${exercise}_W${week}`;
@@ -778,34 +786,65 @@
                 data.progressNotes[notesId] = localStorage.getItem(notesId);
             }
         
+            // Guardar estado de asistencia (solo W1 a W4)
+            document.querySelectorAll(".day-button").forEach(button => {
+                let day = button.dataset.day;
+                if (/W[1-4]$/.test(day)) {
+                    let attended = button.classList.contains("attended");
+                    data.attendance[day] = attended ? "true" : "false";
+                }
+            });
+
+            // Guardar en localStorage con el prefijo `backup_`
             localStorage.setItem(`backup_${month}`, JSON.stringify(data));
             alert(`Backup for ${month} saved successfully!`);
         }
-         // Función para cargar una copia del plan con el mes seleccionado
+
+        // Función para cargar una copia del plan con el mes seleccionado
         function loadCopy(month) {
             let savedData = localStorage.getItem(`backup_${month}`);
             if (savedData) {
                 let data = JSON.parse(savedData);
+            
+                // Restaurar fecha de inicio
                 document.getElementById("start-date").textContent = data.startDate || "___________"; 
             
+                // Restaurar mediciones
                 ["hips", "waist", "glutes"].forEach(id => {
                     if (id in data.measurements) {  
                         document.getElementById(id).value = data.measurements[id] !== null ? data.measurements[id] : "";
                     }
                 });
             
+                // Restaurar ejercicios y notas de progreso por semana
                 for (let week = 1; week <= 4; week++) {
                     ["Leg press", "Hip adductor", "Leg curl", "Lat Pulldown", "Seated Row", "Hip Adductor 2", "Leg Press 2", "Back Extension"].forEach(exercise => {
                         let id = `${exercise}_W${week}`;
                         if (id in data.exercises) {  
-                            document.getElementById(id).value = data.exercises[id] !== null ? data.exercises[id] : "";
+                            let input = document.getElementById(id);
+                            if (input) input.value = data.exercises[id] !== null ? data.exercises[id] : "";
                         }
                     });
                 
                     let notesId = `progress-notes_W${week}`;
                     if (notesId in data.progressNotes) {  
-                        document.getElementById(notesId).value = data.progressNotes[notesId] !== null ? data.progressNotes[notesId] : "";
+                        let textarea = document.getElementById(notesId);
+                        if (textarea) textarea.value = data.progressNotes[notesId] !== null ? data.progressNotes[notesId] : "";
                     }
+                }
+            
+                // Restaurar estado de asistencia
+                if (data.attendance) {
+                    document.querySelectorAll(".day-button").forEach(button => {
+                        let day = button.dataset.day;
+                        if (day && day in data.attendance) {
+                            let attended = data.attendance[day] === "true";
+                            button.classList.toggle("attended", attended);
+                            button.textContent = attended 
+                                ? day.replace(/_W\d/, "") + " 😊"
+                                : day.replace(/_W\d/, "");
+                        }
+                    });
                 }
             
                 alert(`Backup for ${month} loaded successfully!`);
