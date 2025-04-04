@@ -40,7 +40,7 @@
                     padding: 12px 20px;
                     border-radius: 8px;
                     cursor: pointer;
-                    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                     min-height: 44px;
                     min-width: 80px;
                     display: inline-flex;
@@ -49,6 +49,7 @@
                     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
                     margin: 0 5px 10px 5px;
                 }
+
 
                 /* ===== LISTA DE COPIAS ===== */
                 #savedCopiesContainer {
@@ -191,16 +192,26 @@
                 }
         
                 /* ===== INTERACTIVIDAD (priorizando efectos detallados) ===== */
-                .day-button:active,
-                #set-date-btn:active,
-                .btn:active {
+                .day-button:active {
                     transform: scale(0.96);
                     opacity: 0.9;
                 }
-        
-                input[type="date"]:focus {
-                    border-color: #A2E1DB;
-                    outline: none;
+
+                .day-button.attended {
+                    background-color: #A2E1DB;
+                    font-size: 18px;
+                    color: white;
+                    border: none;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                }
+
+                /* Hover solo para desktop */
+                @media (hover: hover) {
+                    .day-button:hover {
+                        background-color: #e0e0e0;
+                        transform: translateY(-1px);
+                        box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+                    }
                 }
 
                 /* ===== BOTÓN OCULTAR LISTA ===== */
