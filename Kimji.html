@@ -666,7 +666,7 @@
         function autoSaveData() {
             // Guardar inputs y textareas sin sobreescribir backups
             document.querySelectorAll("input, textarea").forEach(input => {
-                if (input.id && !input.id.startsWith("backup_")) {
+                if (input.id && typeof input.id === "string" && !input.id.startsWith("backup_")) {
                     localStorage.setItem(input.id, input.value);
                 }
             });
@@ -674,13 +674,11 @@
             // Guardar estado de los botones de asistencia sin afectar backups
             document.querySelectorAll(".day-button").forEach(button => {
                 let day = button.dataset.day;
-                if (!day.startsWith("backup_")) {
+                if (day && typeof day === "string" && !day.startsWith("backup_")) {
                     let attended = button.classList.contains("attended");
                     localStorage.setItem(day, attended ? "true" : "false");
                 }
             });
-        
-            console.log("Datos y asistencia guardados automáticamente (sin afectar backups)");
         }
 
         // Ejecutar cada 5 segundos
@@ -951,6 +949,8 @@
             }
         }
 
+        // Cargar datos al abrir la página
+        document.addEventListener("DOMContentLoaded", loadStoredData);
 </script>
 
     <!-- Contenedor de botones -->
